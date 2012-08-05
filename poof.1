@@ -1,0 +1,23 @@
+.\" Manpage for poof
+.Dd August 5, 2012
+.Dt poof 1
+.Os Mac OS X
+.Sh NAME
+.Nm poof
+.Nd List or remove Mac OS X packages
+.Sh SYNOPSIS
+.Nm Ar package-id
+.Sh DESCRIPTION
+The
+.Nm
+utility lists or removes Mac OS X packages in a low-level manner.
+.Sh EXAMPLES
+List packages (but skip from Apple):
+.Dl "./poof.py | grep -v apple"
+Remove package sketchbookexpressmac:
+.Dl "sudo ./poof.py com.autodesk.sketchbookexpressmac"
+.Sh BUGS
+.Nm
+will not remove nonempty directories.
+.Sh SEE ALSO
+.Xr pkgutil 1
