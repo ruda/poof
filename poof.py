@@ -5,33 +5,35 @@
 # Copyright (c) 2011-2012 Rudá Moura
 #
 
-"""List or remove packages.
-    
-Poof is an utility to list or remove Mac OS X packages. NO WARRANTY!
+"""Poof is an utility to list or remove Mac OS X packages.
 
-DON'T BLAME ME If you destroy your Mac OS X installation,
+NO WARRANTY!
+
+DON'T BLAME ME if you destroy your Mac OS X installation,
 NEVER REMOVE com.apple.* packages unless you know what are you doing.
 
 Usage:
 
 List packages (but ignore from Apple).
-$ ./poof.py | grep -v apple
-com.accessagility.wifiscanner
-com.adobe.pkg.FlashPlayer
-com.amazon.Kindle
-com.barebones.textwrangler
-com.christiankienle.CoreDataEditor
-com.ea.realracing2.mac.bv
-com.evernote.Evernote
-com.google.pkg.GoogleVoiceAndVideo
-com.google.pkg.Keystone
-com.Growl.GrowlHelperApp
-…
 
-Remove sketchbookexpressmac.
-$ sudo ./poof.py com.autodesk.sketchbookexpressmac
-(Some error messages regarding directory is not empty)
-Forgot package 'com.autodesk.sketchbookexpressmac' on '/'.
+    $ ./poof.py | grep -v apple
+    com.accessagility.wifiscanner
+    com.adobe.pkg.FlashPlayer
+    com.amazon.Kindle
+    com.christiankienle.CoreDataEditor
+    com.ea.realracing2.mac.bv
+    com.google.pkg.GoogleVoiceAndVideo
+    com.google.pkg.Keystone
+    com.Growl.GrowlHelperApp
+    com.lightheadsw.caffeine
+    com.Logitech.Control Center.pkg
+    ...
+
+Remove FlashPlayer (com.adobe.pkg.FlashPlayer).
+
+    $ sudo ./poof.py com.adobe.pkg.FlashPlayer
+    (Some error messages regarding directory is not empty)
+    Forgot package 'com.adobe.pkg.FlashPlayer' on '/'.
 """
 
 from subprocess import Popen, PIPE
