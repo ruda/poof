@@ -1,8 +1,12 @@
-Poof is an utility to list or remove Mac OS X packages.
+Poof is a command line utility to list or remove Mac OS X packages.
 
 NO WARRANTY!
 
 DON'T BLAME ME if you destroy your Mac OS X installation, NEVER REMOVE com.apple.* packages unless you know what are you doing.
+
+How it works:
+
+First by removing files and directories and then forgetting the metadata about the package (the receipt data).
 
 Install:
 

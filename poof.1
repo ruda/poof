@@ -1,5 +1,5 @@
 .\" Manpage for poof
-.Dd August 19, 2012
+.Dd January 5, 2013
 .Dt poof 1
 .Os Mac OS X
 .Sh NAME
@@ -10,14 +10,11 @@
 .Sh DESCRIPTION
 The
 .Nm
-utility lists or removes Mac OS X packages in a low-level manner.
+command line utility lists or removes Mac OS X packages in a low-level manner, by removing files and directories and then forgetting the metadata about the package (the receipt data).
 .Sh EXAMPLES
 List packages (but skip from Apple):
-.Dl "./poof.py | grep -v apple"
+.Dl "./poof.py | grep -v com.apple.pkg"
 Remove package FlashPlayer:
 .Dl "sudo ./poof.py com.adobe.pkg.FlashPlayer"
-.Sh BUGS
-.Nm
-will not remove nonempty directories.
 .Sh SEE ALSO
 .Xr pkgutil 1
