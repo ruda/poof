@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Poof by ruda</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Poof</h1>
+        <p>Poof is an utility to list or remove Mac OS X packages.</p>
+
+        <p class="view"><a href="https://github.com/ruda/poof">View the Project on GitHub <small>ruda/poof</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/ruda/poof/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/ruda/poof/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/ruda/poof">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <p>Poof is a command line utility to list or remove Mac OS X packages.</p>
+
+<p>NO WARRANTY!</p>
+
+<p>DON'T BLAME ME if you destroy your Mac OS X installation, NEVER REMOVE com.apple.* packages unless you know what are you doing.</p>
+
+<p>How it works:</p>
+
+<p>First by removing files and directories and then forgetting the metadata about the package (the receipt data).</p>
+
+<p>Install:</p>
+
+<pre><code>$ curl -O https://raw.github.com/ruda/poof/master/poof.py
+$ chmod +x poof.py
+</code></pre>
+
+<p>Usage:</p>
+
+<p>List packages (but ignore from Apple).</p>
+
+<pre><code>$ ./poof.py | grep -v apple
+com.accessagility.wifiscanner
+com.adobe.pkg.FlashPlayer
+com.amazon.Kindle
+com.christiankienle.CoreDataEditor
+com.ea.realracing2.mac.bv
+com.google.pkg.GoogleVoiceAndVideo
+com.google.pkg.Keystone
+com.Growl.GrowlHelperApp
+com.lightheadsw.caffeine
+com.Logitech.Control Center.pkg
+...
+</code></pre>
+
+<p>Remove FlashPlayer (com.adobe.pkg.FlashPlayer).</p>
+
+<pre><code>$ sudo ./poof.py com.adobe.pkg.FlashPlayer
+(Some error messages regarding directory is not empty)
+Forgot package 'com.adobe.pkg.FlashPlayer' on '/'.
+</code></pre>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/ruda">ruda</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-1050966-13");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
