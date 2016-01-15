@@ -1,16 +1,18 @@
 .\" Manpage for poof
-.Dd January 5, 2013
+.Dd January 15, 2016
 .Dt poof 1
-.Os Mac OS X
+.Os OS X
 .Sh NAME
 .Nm poof
-.Nd List or remove Mac OS X packages
+.Nd List and uninstall/remove OS X packages
 .Sh SYNOPSIS
 .Nm Ar package-id
 .Sh DESCRIPTION
 The
 .Nm
-command line utility lists or removes Mac OS X packages in a low-level manner, by removing files and directories and then forgetting the metadata about the package (the receipt data).
+command line utility list and uninstall/remove OS X packages in a low-level manner,
+it first removes all files and directories declared by the package and
+then forget the metadata (the receipt data).
 .Sh EXAMPLES
 List packages (but skip from Apple):
 .Dl "./poof.py | grep -v com.apple.pkg"

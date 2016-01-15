@@ -1,22 +1,25 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 #
-# Poof: List or remove Mac OS X packages
-# Copyright (c) 2011-2013 Rudá Moura <ruda.moura@gmail.com>
+# Poof: List and uninstall/remove OS X packages
+# Copyright (c) 2011-2016 Rudá Moura <ruda.moura@gmail.com>
 #
 
-"""Poof is a command line utility to list or remove Mac OS X packages.
+"""Poof is a command line utility to list and uninstall/remove OS X packages.
 
-NO WARRANTY!
+*NO WARRANTY* DON'T BLAME ME if you destroy your installation!
+NEVER REMOVE com.apple.* packages unless you know what you are doing.
 
-DON'T BLAME ME if you destroy your Mac OS X installation,
-NEVER REMOVE com.apple.* packages unless you know what are you doing.
+How it works:
+
+It first removes all files and directories declared by the package and
+then forget the metadata (the receipt data).
 
 Usage:
 
-List packages (but ignore from Apple).
+List packages (but ignore all from Apple).
 
-    $ ./poof.py | grep -v apple
+    $ ./poof.py | grep -v com.apple.pkg
     com.accessagility.wifiscanner
     com.adobe.pkg.FlashPlayer
     com.amazon.Kindle
@@ -32,7 +35,7 @@ List packages (but ignore from Apple).
 Remove FlashPlayer (com.adobe.pkg.FlashPlayer).
 
     $ sudo ./poof.py com.adobe.pkg.FlashPlayer
-    (Some error messages regarding directory is not empty)
+    ...
     Forgot package 'com.adobe.pkg.FlashPlayer' on '/'.
 """
 
