@@ -2,13 +2,13 @@
 <html>
 
   <head>
-    <meta charset='utf-8' />
-    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <meta name="description" content="Poof : Poof is an utility to list or remove Mac OS X packages." />
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="*Poof* : Poof is an utility to list and uninstall/remove OS X packages.">
 
     <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
 
-    <title>Poof</title>
+    <title>*Poof*</title>
   </head>
 
   <body>
@@ -18,8 +18,8 @@
         <header class="inner">
           <a id="forkme_banner" href="https://github.com/ruda/poof">View on GitHub</a>
 
-          <h1 id="project_title">Poof</h1>
-          <h2 id="project_tagline">Poof is an utility to list or remove Mac OS X packages.</h2>
+          <h1 id="project_title">*Poof*</h1>
+          <h2 id="project_tagline">Poof is an utility to list and uninstall/remove OS X packages.</h2>
 
             <section id="downloads">
               <a class="zip_download_link" href="https://github.com/ruda/poof/zipball/master">Download this project as a .zip file</a>
@@ -31,17 +31,17 @@
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
-        <p>Poof is a command line utility to list or remove Mac OS X packages.</p>
+        <p>Poof is a command line utility to list and uninstall/remove OS X packages.</p>
 
-<p>NO WARRANTY!</p>
-
-<p>DON'T BLAME ME if you destroy your Mac OS X installation, NEVER REMOVE com.apple.* packages unless you know what are you doing.</p>
+<p><em>NO WARRANTY</em> DON'T BLAME ME if you destroy your installation!
+NEVER REMOVE com.apple.* packages unless you know what you are doing.</p>
 
 <p>How it works:</p>
 
-<p>First by removing files and directories and then forgetting the metadata about the package (the receipt data).</p>
+<p>It first removes all files and directories declared by the package and
+then forget the metadata (the receipt data).</p>
 
-<p>Install:</p>
+<p>Get poof:</p>
 
 <pre><code>$ curl -O https://raw.github.com/ruda/poof/master/poof.py
 $ chmod +x poof.py
@@ -49,9 +49,9 @@ $ chmod +x poof.py
 
 <p>Usage:</p>
 
-<p>List packages (but ignore from Apple).</p>
+<p>List packages (but ignore all from Apple).</p>
 
-<pre><code>$ ./poof.py | grep -v apple
+<pre><code>$ ./poof.py | grep -v com.apple.pkg
 com.accessagility.wifiscanner
 com.adobe.pkg.FlashPlayer
 com.amazon.Kindle
@@ -68,7 +68,7 @@ com.Logitech.Control Center.pkg
 <p>Remove FlashPlayer (com.adobe.pkg.FlashPlayer).</p>
 
 <pre><code>$ sudo ./poof.py com.adobe.pkg.FlashPlayer
-(Some error messages regarding directory is not empty)
+...
 Forgot package 'com.adobe.pkg.FlashPlayer' on '/'.
 </code></pre>
       </section>
@@ -77,8 +77,8 @@ Forgot package 'com.adobe.pkg.FlashPlayer' on '/'.
     <!-- FOOTER  -->
     <div id="footer_wrap" class="outer">
       <footer class="inner">
-        <p class="copyright">Poof maintained by <a href="https://github.com/ruda">ruda</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+        <p class="copyright">*Poof* maintained by <a href="https://github.com/ruda">ruda</a></p>
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
       </footer>
     </div>
 
