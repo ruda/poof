@@ -79,10 +79,8 @@ def package_info(package_id):
 
 def package_files(package_id):
     sh = Shell()
-    ok, files = sh.pkgutil('--files ' + package_id)
+    ok, files = sh.pkgutil('--only-files --files ' + package_id)
     ok, dirs = sh.pkgutil('--only-dirs --files ' + package_id)
-    # Files minus directories
-    files = list(set(files) - set(dirs))
     # Guess AppStore receipt
     for dir in dirs:
         if dir.endswith('.app'):
