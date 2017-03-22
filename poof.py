@@ -73,7 +73,7 @@ def package_info(package_id):
     sh = Shell()
     ok, info = sh.pkgutil('--pkg-info ' + package_id)
     if ok == False:
-        raise IOError, 'Unknown package or name mispelled'
+        raise IOError('Unknown package or name mispelled')
     info = [x.split(': ') for x in info]
     return dict(info)
 
@@ -105,7 +105,7 @@ def package_remove(package_id, force=True, verbose=False):
     for path in files:
         try:
             os.remove(path)
-        except OSError, e:
+        except OSError as e:
             clean = False
             print e
     dirs = [prefix+x for x in dirs]
@@ -116,7 +116,7 @@ def package_remove(package_id, force=True, verbose=False):
             os.rmdir(dir)
             if verbose:
                 print 'Removing', dir
-        except OSError, e:
+        except OSError as e:
             clean = False
             print e
     if force or clean:
