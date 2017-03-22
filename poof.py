@@ -1,11 +1,11 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 #
-# Poof: List and uninstall/remove OS X packages
-# Copyright (c) 2011-2016 Rudá Moura <ruda.moura@gmail.com>
+# Poof: List and uninstall/remove macOS packages
+# Copyright (c) 2011-2017 Rudá Moura <ruda.moura@gmail.com>
 #
 
-"""Poof is a command line utility to list and uninstall/remove OS X packages.
+"""Poof is a command line utility to list and uninstall/remove macOS packages.
 
 *NO WARRANTY* DON'T BLAME ME if you destroy your installation!
 NEVER REMOVE com.apple.* packages unless you know what you are doing.
@@ -40,11 +40,14 @@ Remove FlashPlayer (com.adobe.pkg.FlashPlayer).
 """
 
 from subprocess import Popen, PIPE
-import sys, os
+import sys
+import os
+
 
 class Shell(object):
     def __getattribute__(self, attr):
         return Command(attr)
+
 
 class Command(object):
     def __init__(self, command):
@@ -55,7 +58,7 @@ class Command(object):
         if params:
             args += params.split()
         return self.run(args)
-    
+
     def run(self, args):
         p = Popen(args, stdout=PIPE, stderr=PIPE)
         out, err = p.communicate()
@@ -64,10 +67,12 @@ class Command(object):
         else:
             return False, err.strip().split('\n')
 
+
 def package_list():
     sh = Shell()
     sts, out = sh.pkgutil('--pkgs')
     return out
+
 
 def package_info(package_id):
     sh = Shell()
@@ -76,6 +81,7 @@ def package_info(package_id):
         raise IOError('Unknown package or name mispelled')
     info = [x.split(': ') for x in info]
     return dict(info)
+
 
 def package_files(package_id):
     sh = Shell()
@@ -89,10 +95,12 @@ def package_files(package_id):
             break
     return files, dirs
 
+
 def package_forget(package_id):
     sh = Shell()
     ok, msg = sh.pkgutil('--verbose --forget ' + package_id)
     return msg
+
 
 def package_remove(package_id, force=True, verbose=False):
     try:
@@ -104,7 +112,7 @@ def package_remove(package_id, force=True, verbose=False):
     if info['location']:
         prefix += info['location'] + os.sep
     files, dirs = package_files(package_id)
-    files = [prefix+x for x in files]
+    files = [prefix + x for x in files]
     clean = True
     for path in files:
         try:
@@ -112,7 +120,7 @@ def package_remove(package_id, force=True, verbose=False):
         except OSError as e:
             clean = False
             print e
-    dirs = [prefix+x for x in dirs]
+    dirs = [prefix + x for x in dirs]
     dirs.sort(lambda p1, p2: p1.count('/') - p2.count('/'),
               reverse=True)
     for dir in dirs:
@@ -128,15 +136,17 @@ def package_remove(package_id, force=True, verbose=False):
         print msg[0]
     return clean
 
+
 def main(argv=None):
     if argv == None:
         argv = sys.argv
     if len(argv) == 1:
         for pkg in package_list():
             print pkg
-    for arg in argv[1:]: 
+    for arg in argv[1:]:
         package_remove(arg)
     return 0
+
 
 if __name__ == '__main__':
     sys.exit(main())

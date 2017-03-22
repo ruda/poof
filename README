@@ -1,4 +1,4 @@
-Poof is a command line utility to list and uninstall/remove OS X packages.
+Poof is a command line utility to list and uninstall/remove macOS packages.
 
 *NO WARRANTY* DON'T BLAME ME if you destroy your installation!
 NEVER REMOVE com.apple.* packages unless you know what you are doing.
@@ -10,7 +10,7 @@ then forget the metadata (the receipt data).
 
 Get poof:
 
-    $ curl -O https://raw.github.com/ruda/poof/master/poof.py
+    $ curl -O https://raw.githubusercontent.com/ruda/poof/master/poof.py
     $ chmod +x poof.py
 
 Usage:
