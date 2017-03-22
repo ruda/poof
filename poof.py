@@ -95,7 +95,11 @@ def package_forget(package_id):
     return msg
 
 def package_remove(package_id, force=True, verbose=False):
-    info = package_info(package_id)
+    try:
+        info = package_info(package_id)
+    except IOError as e:
+        print "%s: '%s'" % (e, package_id)
+        return False
     prefix = info['volume']
     if info['location']:
         prefix += info['location'] + os.sep
