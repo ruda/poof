@@ -1,0 +1,22 @@
+name: Test changes in a banch
+
+on: [push]
+
+jobs:
+  list-and-remove:
+    runs-on: macos-latest
+    strategy:
+      matrix:
+        python-version: [2]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: List packages installed
+        run: |
+          python poof.py
+      - name: Remove packages
+        run: |
+          sudo python poof.py com.amazon.aws.cli2 com.microsoft.edgemac
