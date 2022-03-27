@@ -62,10 +62,13 @@ class Command(object):
     def run(self, args):
         p = Popen(args, stdout=PIPE, stderr=PIPE)
         out, err = p.communicate()
+        out, err = out.strip(), err.strip()
+        if sys.version_info >= (3, 0):
+            out, err = str(out, 'utf-8'), str(err, 'utf-8')
         if p.returncode == 0:
-            return True, out.strip().split('\n')
+            return True, out.split('\n')
         else:
-            return False, err.strip().split('\n')
+            return False, err.split('\n')
 
 
 def package_list():
@@ -106,7 +109,7 @@ def package_remove(package_id, force=True, verbose=False):
     try:
         info = package_info(package_id)
     except IOError as e:
-        print "%s: '%s'" % (e, package_id)
+        print("%s: '%s'" % (e, package_id))
         return False
     prefix = info['volume']
     if info['location']:
@@ -119,22 +122,46 @@ def package_remove(package_id, force=True, verbose=False):
             os.remove(path)
         except OSError as e:
             clean = False
-            print e
+            print(e)
     dirs = [prefix + x for x in dirs]
-    dirs.sort(lambda p1, p2: p1.count('/') - p2.count('/'),
-              reverse=True)
+    kcmp = lambda p1, p2: p1.count('/') - p2.count('/')
+    if sys.version_info >= (3, 0):
+        dirs.sort(key=cmp_to_key(kcmp), reverse=True)
+    else:
+        dirs.sort(kcmp, reverse=True)
     for dir in dirs:
         try:
             os.rmdir(dir)
             if verbose:
-                print 'Removing', dir
+                print('Removing', dir)
         except OSError as e:
             clean = False
-            print e
+            print(e)
     if force or clean:
         msg = package_forget(package_id)
-        print msg[0]
+        print(msg[0])
     return clean
+
+
+# From https://docs.python.org/3/howto/sorting.html
+def cmp_to_key(mycmp):
+    'Convert a cmp= function into a key= function'
+    class K:
+        def __init__(self, obj, *args):
+            self.obj = obj
+        def __lt__(self, other):
+            return mycmp(self.obj, other.obj) < 0
+        def __gt__(self, other):
+            return mycmp(self.obj, other.obj) > 0
+        def __eq__(self, other):
+            return mycmp(self.obj, other.obj) == 0
+        def __le__(self, other):
+            return mycmp(self.obj, other.obj) <= 0
+        def __ge__(self, other):
+            return mycmp(self.obj, other.obj) >= 0
+        def __ne__(self, other):
+            return mycmp(self.obj, other.obj) != 0
+    return K
 
 
 def main(argv=None):
@@ -142,7 +169,7 @@ def main(argv=None):
         argv = sys.argv
     if len(argv) == 1:
         for pkg in package_list():
-            print pkg
+            print(pkg)
     for arg in argv[1:]:
         package_remove(arg)
     return 0
