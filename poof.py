@@ -39,6 +39,7 @@ Remove FlashPlayer (com.adobe.pkg.FlashPlayer).
     Forgot package 'com.adobe.pkg.FlashPlayer' on '/'.
 """
 
+from __future__ import print_function
 from subprocess import Popen, PIPE
 import sys
 import os
@@ -124,11 +125,11 @@ def package_remove(package_id, force=True, verbose=False):
             clean = False
             print(e)
     dirs = [prefix + x for x in dirs]
-    kcmp = lambda p1, p2: p1.count('/') - p2.count('/')
     if sys.version_info >= (3, 0):
-        dirs.sort(key=cmp_to_key(kcmp), reverse=True)
+        dirs_depth = sorted({(x.count('/'), x) for x in dirs}, key=lambda x: x[0], reverse=True)
+        dirs = [x[1] for x in dirs_depth]
     else:
-        dirs.sort(kcmp, reverse=True)
+        dirs.sort(lambda p1, p2: p1.count('/') - p2.count('/'), reverse=True)
     for dir in dirs:
         try:
             os.rmdir(dir)
@@ -141,27 +142,6 @@ def package_remove(package_id, force=True, verbose=False):
         msg = package_forget(package_id)
         print(msg[0])
     return clean
-
-
-# From https://docs.python.org/3/howto/sorting.html
-def cmp_to_key(mycmp):
-    'Convert a cmp= function into a key= function'
-    class K:
-        def __init__(self, obj, *args):
-            self.obj = obj
-        def __lt__(self, other):
-            return mycmp(self.obj, other.obj) < 0
-        def __gt__(self, other):
-            return mycmp(self.obj, other.obj) > 0
-        def __eq__(self, other):
-            return mycmp(self.obj, other.obj) == 0
-        def __le__(self, other):
-            return mycmp(self.obj, other.obj) <= 0
-        def __ge__(self, other):
-            return mycmp(self.obj, other.obj) >= 0
-        def __ne__(self, other):
-            return mycmp(self.obj, other.obj) != 0
-    return K
 
 
 def main(argv=None):
